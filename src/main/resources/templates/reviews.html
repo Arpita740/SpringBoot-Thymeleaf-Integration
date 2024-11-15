@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Customer Reviews</h1>
+        
+        <!-- Error message if no reviews are found -->
+        <div th:if="${error}" class="alert alert-danger">
+            <p th:text="${error}"></p>
+        </div>
+
+        <!-- Display reviews if data is available -->
+        <table class="table table-striped" th:if="${reviews != null}">
+            <thead>
+                <tr>
+                    <th scope="col">Review ID</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Review Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate through reviews and display each review -->
+                <tr th:each="review : ${reviews}">
+                    <td th:text="${review.reviewId}"></td>
+                    <td th:text="${review.rating}"></td>
+                    <td th:text="${review.comment}"></td>
+                    <td th:text="${review.reviewDate}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
